@@ -13,6 +13,8 @@ export abstract class MaterialTableComponent<T> implements AfterViewInit {
     isLoading$: Observable<boolean>;
     displayedColumns: string[];
     filterValue: string = '';
+    relationships: boolean = false;
+    appends: boolean = false;
 
     @ViewChild(MatTable) table: MatTable<T>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -20,7 +22,7 @@ export abstract class MaterialTableComponent<T> implements AfterViewInit {
 
     protected constructor(protected service: AbstractPagedCrudService<T>) {
         this.isLoading$ = this.service.isLoading$;
-        this.dataSource = new MaterialTableDataSource<T>(service);
+        this.dataSource = new MaterialTableDataSource<T>(service, this.relationships, this.appends);
     }
 
     ngAfterViewInit() {
