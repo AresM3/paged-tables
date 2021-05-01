@@ -4,8 +4,8 @@ import {merge, Observable} from 'rxjs';
 import {MatTable} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
-import {PagedCrudService} from './paged-crud.service';
 import {tap} from 'rxjs/operators';
+import {AbstractPagedCrudService} from "./abstract-paged-crud.service";
 
 @Injectable()
 export abstract class MaterialTableComponent<T> implements AfterViewInit {
@@ -18,7 +18,7 @@ export abstract class MaterialTableComponent<T> implements AfterViewInit {
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort, {static: true}) sort: MatSort;
 
-    protected constructor(protected service: PagedCrudService<T>) {
+    protected constructor(protected service: AbstractPagedCrudService<T>) {
         this.isLoading$ = this.service.isLoading$;
         this.dataSource = new MaterialTableDataSource<T>(service);
     }
