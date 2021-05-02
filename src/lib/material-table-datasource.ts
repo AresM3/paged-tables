@@ -8,8 +8,7 @@ export class MaterialTableDataSource<T> implements DataSource<T> {
     protected totalSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
     public total$: Observable<number> = this.totalSubject.asObservable();
 
-    constructor(protected service: AbstractPagedCrudService<T>, public relationships: boolean = false,
-                public appends: boolean = false) {}
+    constructor(protected service: AbstractPagedCrudService<T>) {}
 
     connect(collectionViewer: CollectionViewer): Observable<T[]> {
         return this.listSubject.asObservable();
@@ -19,15 +18,16 @@ export class MaterialTableDataSource<T> implements DataSource<T> {
         this.listSubject.complete();
     }
 
-    load(filter: string, sortDirection: SortDirection, sortColumn: number, pageIndex: number, pageSize: number): void {
+    load(filter: string, sortDirection: SortDirection, sortColumn: number, pageIndex: number, pageSize: number,
+         relationships: boolean = false, appends: boolean = false): void {
         this.service.index({
             filter,
             sortDirection,
             sortColumn,
             pageIndex,
             pageSize,
-            relationships: this.relationships,
-            appends      : this.appends
+            relationships,
+            appends
         }).subscribe(val => {
             this.listSubject.next(val.objects.slice());
             this.totalSubject.next(val.total);

@@ -35,7 +35,8 @@ export class PagedCrudService<T extends BaseModel> extends AbstractPagedCrudServ
 
     index(query: DataSourceQuery): Observable<{ objects: T[]; total: number }> {
         this.isLoadingSubject.next(true);
-        return AxiosRequest.get<{objects: T[], total: number}>(this.IndexPath).pipe(
+        let url = this.generateUrl(query, this.IndexPath);
+        return AxiosRequest.get<{objects: T[], total: number}>(url).pipe(
             first(a => !!a),
             catchError(err => this.error(err)),
             finalize(() => this.isLoadingSubject.next(false))
@@ -64,5 +65,9 @@ export class PagedCrudService<T extends BaseModel> extends AbstractPagedCrudServ
 
     protected error(err: any){
         return throwError(err);
+    }
+
+    protected generateUrl(query: DataSourceQuery, prepend?: string): string {
+        return PagedCrudService.generateUrl(query, prepend);
     }
 }

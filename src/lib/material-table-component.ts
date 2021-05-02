@@ -22,7 +22,7 @@ export abstract class MaterialTableComponent<T> implements AfterViewInit {
 
     protected constructor(protected service: AbstractPagedCrudService<T>) {
         this.isLoading$ = this.service.isLoading$;
-        this.dataSource = new MaterialTableDataSource<T>(service, this.relationships, this.appends);
+        this.dataSource = new MaterialTableDataSource<T>(service);
     }
 
     ngAfterViewInit() {
@@ -33,7 +33,7 @@ export abstract class MaterialTableComponent<T> implements AfterViewInit {
     abstract get column(): number;
 
     load(){
-        this.dataSource.load(this.filterValue, this.sort.direction, this.column, this.paginator.pageIndex, this.paginator.pageSize);
+        this.dataSource.load(this.filterValue, this.sort.direction, this.column, this.paginator.pageIndex, this.paginator.pageSize, this.relationships, this.appends);
     }
 
     abstract openCreateDialog();
