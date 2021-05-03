@@ -1,15 +1,23 @@
 import {BaseModel} from "./base.model";
 import {ModelKeyBinding} from "./model-key-binding";
-import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 export abstract class ModelManager<T extends BaseModel> {
     keyBindings: ModelKeyBinding[];
 
     protected constructor(protected _model: T, protected _fb: FormBuilder) {}
 
-    abstract form(): FormGroup;
+    form(): FormGroup {
+        let controls = {};
+        this.keyBindings.forEach(k => controls[k.key] = new FormControl(!!k.default ? k.default : '', k.validators));
+        return this._fb.group(controls);
+    }
 
-    abstract view(): { name: string, value: string }[];
+    view(): { name: string, value: string }[]{
+        return this.keyBindings.map(k => {
+            return {name: k.binding, value: k.value};
+        });
+    }
 
-    abstract get(fg: { [p: string]: AbstractControl }): T;
+    abstract get(fg: { [p: string]: AbstractControl }): T
 }
