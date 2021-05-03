@@ -8,3 +8,5 @@ export * from './lib/material-table-datasource';
 export * from './lib/paged-crud.service';
 export * from './lib/_models/base.model';
 export * from './lib/abstract-paged-crud.service';
+export * from './lib/_models/model-key-binding';
+export * from './lib/_models/model-manager';
