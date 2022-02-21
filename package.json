@@ -3,13 +3,13 @@
   "scripts": {
     "build": "ng build paged-tables --prod"
   },
-  "version": "1.0.10",
+  "version": "2.0.0",
   "peerDependencies": {
-    "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0",
-    "@angular/cdk": "^11.0.0",
-    "@angular/forms": "^11.0.0",
-    "@angular/material": "^11.0.0",
+    "@angular/common": "^12.0.0",
+    "@angular/core": "^12.0.0",
+    "@angular/cdk": "^12.0.0",
+    "@angular/forms": "^12.0.0",
+    "@angular/material": "^12.0.0",
     "@m3team/axios-requests": "^1.0.1",
     "@m3team/api-config": "^0.0.1",
     "rxjs": "^6.6.0"
