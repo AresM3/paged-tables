@@ -46,7 +46,7 @@ export class PagedCrudService<T extends BaseModel> extends AbstractPagedCrudServ
     protected readonly ShowPath: string;
 
     show(id: number): Observable<T> {
-        return AxiosRequest.get<T>(this.ShowPath).pipe(
+        return AxiosRequest.get<T>(this.ShowPath + `/${id}`).pipe(
             first(a => !!a),
             catchError(err => this.error(err))
         );
