@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {AbstractPagedCrudService} from "./abstract-paged-crud.service";
 import {Observable, throwError} from "rxjs";
-import {DataSourceQuery} from "./data-source-query";
 import {AxiosRequest} from "@m3team/axios-requests/lib/axios-requests";
 import {catchError, finalize, first} from "rxjs/operators";
 import {BaseModel} from "./_models/base.model";
+import {PagedIndexQuery} from "./_classes/paged-index-query";
+import {PagedIndexModel} from "./_models/paged-index.model";
 
 @Injectable()
 export class PagedCrudService<T extends BaseModel> extends AbstractPagedCrudService<T> {
@@ -24,7 +25,7 @@ export class PagedCrudService<T extends BaseModel> extends AbstractPagedCrudServ
 
     delete(obj: T): Observable<boolean> {
         this.isLoadingSubject.next(true);
-        return AxiosRequest.delete<boolean>(this.DeletePath + `/${obj.id}`).pipe(
+        return AxiosRequest.delete<boolean>(`${this.DeletePath}/${obj.id}`).pipe(
             first(a => !!a),
             catchError(err => this.error(err)),
             finalize(() => this.isLoadingSubject.next(false))
@@ -33,10 +34,9 @@ export class PagedCrudService<T extends BaseModel> extends AbstractPagedCrudServ
 
     protected readonly IndexPath: string;
 
-    index(query: DataSourceQuery): Observable<{ objects: T[]; total: number }> {
+    index(query: PagedIndexQuery): Observable<PagedIndexModel<T>> {
         this.isLoadingSubject.next(true);
-        let url = this.generateUrl(query, this.IndexPath);
-        return AxiosRequest.get<{objects: T[], total: number}>(url).pipe(
+        return AxiosRequest.get<PagedIndexModel<T>>(PagedIndexQuery.queryToUrl(query, this.IndexPath)).pipe(
             first(a => !!a),
             catchError(err => this.error(err)),
             finalize(() => this.isLoadingSubject.next(false))
@@ -46,7 +46,7 @@ export class PagedCrudService<T extends BaseModel> extends AbstractPagedCrudServ
     protected readonly ShowPath: string;
 
     show(id: number): Observable<T> {
-        return AxiosRequest.get<T>(this.ShowPath + `/${id}`).pipe(
+        return AxiosRequest.get<T>(`${this.ShowPath}/${id}`).pipe(
             first(a => !!a),
             catchError(err => this.error(err))
         );
@@ -56,18 +56,14 @@ export class PagedCrudService<T extends BaseModel> extends AbstractPagedCrudServ
 
     update(obj: T): Observable<T> {
         this.isLoadingSubject.next(true);
-        return AxiosRequest.put<T>(this.UpdatePath + `/${obj.id}`, obj).pipe(
+        return AxiosRequest.put<T>(`${this.UpdatePath}/${obj.id}`, obj).pipe(
             first(a => !!a),
             catchError(err => this.error(err)),
             finalize(() => this.isLoadingSubject.next(false))
         );
     }
 
-    protected error(err: any){
+    protected error(err: any) {
         return throwError(err);
-    }
-
-    protected generateUrl(query: DataSourceQuery, prepend?: string): string {
-        return PagedCrudService.generateUrl(query, prepend);
     }
 }

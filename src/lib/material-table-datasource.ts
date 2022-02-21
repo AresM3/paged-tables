@@ -18,16 +18,13 @@ export class MaterialTableDataSource<T> implements DataSource<T> {
         this.listSubject.complete();
     }
 
-    load(filter: string, sortDirection: SortDirection, sortColumn: number, pageIndex: number, pageSize: number,
-         relationships: boolean = false, appends: boolean = false): void {
+    load(filter: string, sortDirection: SortDirection, sortColumn: number, pageIndex: number, pageSize: number): void {
         this.service.index({
-            filter,
-            sortDirection,
-            sortColumn,
-            pageIndex,
-            pageSize,
-            relationships,
-            appends
+            filter        : filter,
+            sort_direction: sortDirection,
+            sort_column   : sortColumn,
+            page_index    : pageIndex,
+            page_size     : pageSize,
         }).subscribe(val => {
             this.listSubject.next(val.objects.slice());
             this.totalSubject.next(val.total);

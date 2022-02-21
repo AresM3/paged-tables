@@ -1,8 +1,9 @@
 import {ApiConfiguration, AuthService, ServiceWithConfig} from '@m3team/api-config';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {DataSourceQuery} from './data-source-query';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {PagedIndexQueryModel} from "./_models/paged-index-query.model";
+import {PagedIndexModel} from "./_models/paged-index.model";
 
 @Injectable()
 export abstract class AbstractPagedCrudService<T> extends ServiceWithConfig {
@@ -13,7 +14,7 @@ export abstract class AbstractPagedCrudService<T> extends ServiceWithConfig {
         super(config, http, authService);
     }
 
-    abstract index(query: DataSourceQuery): Observable<{ objects: T[], total: number }>;
+    abstract index(query: PagedIndexQueryModel): Observable<PagedIndexModel<T>>;
 
     abstract show(id: number): Observable<T>;
 
@@ -22,16 +23,4 @@ export abstract class AbstractPagedCrudService<T> extends ServiceWithConfig {
     abstract delete(obj: T): Observable<boolean>;
 
     abstract update(obj: T): Observable<T>;
-
-    public static generateUrl(query: DataSourceQuery, prepend?: string): string {
-        let url = !!prepend ? `${prepend}?` : '?';
-        url += !!query.filter ? `filter=${query.filter}&` : '';
-        url += !!query.sortColumn ? `sort_column=${query.sortColumn}&` : '';
-        url += !!query.sortDirection ? `sort_direction=${query.sortDirection}&` : '';
-        url += !!query.pageIndex ? `page_index=${query.pageIndex}&` : '';
-        url += !!query.pageSize ? `page_size=${query.pageSize}&` : '';
-        url += !!query.relationships ? `relationships=${query.relationships}&` : '';
-        url += !!query.appends ? `appends=${query.appends}&` : '';
-        return url;
-    }
 }

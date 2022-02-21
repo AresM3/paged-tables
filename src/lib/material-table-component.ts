@@ -13,8 +13,6 @@ export abstract class MaterialTableComponent<T> implements AfterViewInit {
     isLoading$: Observable<boolean>;
     displayedColumns: string[];
     filterValue: string = '';
-    relationships: boolean = false;
-    appends: boolean = false;
 
     @ViewChild(MatTable) table: MatTable<T>;
     @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -33,7 +31,7 @@ export abstract class MaterialTableComponent<T> implements AfterViewInit {
     abstract get column(): number;
 
     load(){
-        this.dataSource.load(this.filterValue, this.sort.direction, this.column, this.paginator.pageIndex, this.paginator.pageSize, this.relationships, this.appends);
+        this.dataSource.load(this.filterValue, this.sort.direction, this.column, this.paginator.pageIndex, this.paginator.pageSize);
     }
 
     abstract openCreateDialog();
