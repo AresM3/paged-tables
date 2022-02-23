@@ -1,5 +1,5 @@
 {
-  "name": "@m3team/paged-tables",
+  "name": "@aresm3/paged-tables",
   "scripts": {
     "build": "ng build paged-tables --prod"
   },
