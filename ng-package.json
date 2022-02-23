@@ -8,6 +8,6 @@
     "@angular/cdk",
     "@angular/material",
     "rxjs",
-    "@m3team/api-config"
+    "@aresm3/api-config"
   ]
 }
