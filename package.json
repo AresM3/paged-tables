@@ -1,18 +1,20 @@
 {
-  "name": "@m3team/paged-tables",
-  "version": "0.0.4",
+  "name": "@aresm3/paged-tables",
+  "scripts": {
+    "build": "ng build paged-tables --prod",
+    "pub": "cd dist & npm publish",
+    "build-pub": "npm run build & npm run pub"
+  },
+  "version": "0.0.6",
   "peerDependencies": {
     "@angular/common": "^11.0.0",
-    "@angular/core": "^11.0.0"
-  },
-  "dependencies": {
-    "tslib": "^2.0.0",
+    "@angular/core": "^11.0.0",
     "@angular/cdk": "^11.0.0",
     "@angular/material": "^11.0.0",
     "rxjs": "^6.6.0",
-    "@m3team/api-config": "^0.0.1"
+    "@aresm3/api-config": "^1.0.0"
   },
-  "publishConfig": {
-    "registry": "http://152.228.160.213:4873"
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
