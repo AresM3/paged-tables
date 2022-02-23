@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {AbstractPagedCrudService} from "./abstract-paged-crud.service";
 import {Observable, throwError} from "rxjs";
 import {DataSourceQuery} from "./data-source-query";
-import {AxiosRequest} from "@m3team/axios-requests/lib/axios-requests";
+import {AxiosRequest} from "@aresm3/axios-requests/lib/axios-requests";
 import {catchError, finalize, first} from "rxjs/operators";
 import {BaseModel} from "./_models/base.model";
 
