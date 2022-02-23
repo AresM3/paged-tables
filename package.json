@@ -18,8 +18,5 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-  },
-  "publishConfig": {
-    "registry": "http://152.228.160.213:4873"
   }
 }
