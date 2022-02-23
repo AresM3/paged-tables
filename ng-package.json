@@ -4,10 +4,5 @@
   "lib": {
     "entryFile": "src/public-api.ts"
   },
-  "whitelistedNonPeerDependencies": [
-    "@angular/cdk",
-    "@angular/material",
-    "rxjs",
-    "@m3team/api-config"
-  ]
+  "whitelistedNonPeerDependencies": []
 }

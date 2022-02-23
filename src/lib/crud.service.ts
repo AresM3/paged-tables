@@ -1,5 +1,5 @@
 import {BehaviorSubject, Observable} from 'rxjs';
-import {ServiceWithConfig} from '@m3team/api-config';
+import {ServiceWithConfig} from '@aresm3/api-config';
 import {Injectable} from '@angular/core';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import {ApiConfiguration, AuthService, ServiceWithConfig} from '@m3team/api-config';
+import {ApiConfiguration, AuthService, ServiceWithConfig} from '@aresm3/api-config';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {DataSourceQuery} from './data-source-query';
 import {HttpClient} from '@angular/common/http';
