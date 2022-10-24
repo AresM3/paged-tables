@@ -1,24 +1,21 @@
 # PagedTables
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
+This library provides items to deal with the server-side pagination of data.
 
-## Code scaffolding
+## Datasource
 
-Run `ng generate component component-name --project paged-tables` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project paged-tables`.
-> Note: Don't forget to add `--project paged-tables` or else it will be added to the default project in your `angular.json` file. 
+This library implements the Angular Material Datasource logic to some typical situations.
 
-## Build
+- **PagedIndexMaterialTableDatasource**: this datasource manages an observable that returns a response defined in the
+  PagedIndexModel interface, all according to Angular Material Datasource design.
+- **IndexableMaterialTableDatasource**: this datasource needs a service that has got an index method that returns a
+  PagedIndexModel type response and then process it according to Angular Material Datasource design.
+- **MaterialTableDatasource**: a simple datasource that manages an observable of a simple array
 
-Run `ng build paged-tables` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Helpers
 
-## Publishing
+This library also provides some useful helpers.
 
-After building your library with `ng build paged-tables`, go to the dist folder `cd dist/paged-tables` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test paged-tables` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- **PagedIndexQuery**: class that helps on the construction of query url
+- **MaterialTableViewer**: class that stands as a base for a MaterialTableComponent implementation. It has got an IndexableMaterialTableDatasource.
+- **TableSettingsStorage**: a storage that saves the settings about the component's that uses PagedTables

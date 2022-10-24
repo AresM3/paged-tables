@@ -3,11 +3,5 @@
   "dest": "./dist",
   "lib": {
     "entryFile": "src/public-api.ts"
-  },
-  "whitelistedNonPeerDependencies": [
-    "@angular/cdk",
-    "@angular/material",
-    "rxjs",
-    "@aresm3/api-config"
-  ]
+  }
 }

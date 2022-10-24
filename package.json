@@ -3,21 +3,32 @@
   "scripts": {
     "build": "ng build paged-tables --prod",
     "pub": "cd dist & npm publish",
-    "build-pub": "npm run build & npm run pub"
+    "build-pub": "npm run build & npm run pub",
+    "test": "ng test paged-tables"
   },
-  "version": "2.0.0",
+  "version": "3.0.0",
   "peerDependencies": {
-    "@angular/common": "^12.0.0",
-    "@angular/core": "^12.0.0",
-    "@angular/cdk": "^12.0.0",
-    "@angular/forms": "^12.0.0",
-    "@angular/material": "^12.0.0",
-    "@aresm3/axios-requests": "^1.0.1",
-    "@aresm3/api-config": "^1.0.0",
-    "rxjs": "^6.6.0"
+    "@angular/cdk": "^14.2.5",
+    "@angular/common": "^14.2.6",
+    "@angular/core": "^14.2.6",
+    "@angular/forms": "^14.2.6",
+    "@angular/material": "^14.2.5",
+    "@aresm3/expiring-local-storage": "^1.1.0",
+    "rxjs": "^7.5.7"
   },
   "dependencies": {
-    "tslib": "^2.0.0"
+    "tslib": "^2.4.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@angular-eslint/schematics": "^14.1.2",
+    "@aresm3/expiring-local-storage": "^1.1.0",
+    "@types/jasmine": "~3.10.0",
+    "@types/node": "^12.11.1",
+    "jasmine-core": "~4.0.0",
+    "karma": "~6.3.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.1.0",
+    "karma-jasmine": "~4.0.0",
+    "karma-jasmine-html-reporter": "~1.7.0"
+  }
 }
