@@ -6,7 +6,7 @@
     "build-pub": "npm run build & npm run pub",
     "test": "ng test paged-tables"
   },
-  "version": "3.0.0",
+  "version": "3.1.0",
   "peerDependencies": {
     "@angular/cdk": "^14.2.5",
     "@angular/common": "^14.2.6",
